@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="snackMapper">
+	<delete id="delSnack"
+		parameterType="com.noej.jun132mb.main.Snack">
+		delete from jun13_snack
+		where s_name like '%'||#{s_name}||'%'
+	</delete>
+	<delete id="delSnack2"
+		parameterType="com.noej.jun132mb.main.Snack">
+		delete from jun13_snack
+		where s_price &lt; #{s_price}
+	</delete>
+	<insert id="regSnack"
+		parameterType="com.noej.jun132mb.main.Snack">
+		insert into jun13_snack
+		values(#{s_name}, #{s_price})
+	</insert>
+	<select id="getSnack"
+		resultType="com.noej.jun132mb.main.Snack">
+		select *
+		from jun13_snack
+		order by s_name
+	</select>
+	<update id="updateSnack"
+		parameterType="com.noej.jun132mb.main.SnackUpdateValues">
+		update jun13_snack
+		set s_price = s_price - #{setValue}
+		where s_price >= #{whereValue}
+		</update>
+</mapper>

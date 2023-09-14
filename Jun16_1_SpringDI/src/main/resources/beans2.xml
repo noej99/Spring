@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	<bean name="c2" class="com.noej.jun161sdi.company.Company">
+		<constructor-arg value="삼성"></constructor-arg>
+		<constructor-arg value="수원"></constructor-arg>
+		<constructor-arg value="5000"></constructor-arg>
+	</bean>
+	<bean id="p" class="com.noej.jun161sdi.phone.Phone">
+	</bean>
+	<context:annotation-config></context:annotation-config>
+</beans>

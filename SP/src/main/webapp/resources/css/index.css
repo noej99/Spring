@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: "chosun";
+	src: url("chosun.ttf"); 
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	font-family: "chosun";
+}
+
+::-webkit-scrollbar{
+	display: none;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+
+#weatherIcon {
+	position: fixed;
+	top: 100px;
+	right: 340px;
+	z-index: 99;
+	font-family: "chosun";
+}
+
+#siteTitleArea {
+	position: fixed;
+	width: 100%;
+	border-bottom: black solid 3px;
+	background-color: white;
+}
+
+#siteTitle table{
+	width: 1200px;
+}
+
+#siteTitle {
+	height: 150px;
+	font-size: 30pt;
+	font-weight: 900;
+	font-family: "chosun";
+}
+
+#siteMenu {
+	width: 150px;
+	height: 100%;
+	position:fixed;
+	z-index: 97;
+	border-right: black solid 3px;
+	background-color: white;
+	padding: 5px;
+	font-family: "chosun";
+	transition: all 0.3s ease-out;
+	left: -150px;
+}
+
+#siteContentArea {
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 200px;
+	width: 1200px;
+	font-family: "chosun";
+}
+
+#siteResult {
+	bottom: 20px;
+	right: 20px;
+	position: fixed;
+	font-family: "chosun";
+}
+
+#menuHandle {
+	position: fixed;
+	top: 165px;
+	left: 0px;
+	z-index: 98;
+	background-color: white;
+	width: 40px;
+	border-bottom: black solid 3px;
+	border-top: black solid 3px;
+	border-right: black solid 3px;
+	transition: all 0.3s ease-out;
+}
+#menuHandle img{
+	max-width: 35px;
+}

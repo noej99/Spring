@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+#drTable {
+	border: black solid 2px;
+	width: 80%;
+	font-family: "chosun";
+	background-color: white;
+}
+
+#drTable img {
+	width: 30px;
+}
+
+#drTable .th2{
+	width: 60%;
+}
+#drTable .th3{
+	width: 12%;
+}
+#drTable .th4{
+	width: 8%;
+}

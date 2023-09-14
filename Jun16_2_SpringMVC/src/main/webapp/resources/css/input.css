@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+button {
+	color: black;
+	background-color: transparent;
+	font-weight: 700;
+	font-size: 11pt;
+}
+
+input {
+	border: black solid 2px;
+	outline-color: green;
+}
+body {
+	font-size: 12pt;
+	font-weight: 800;
+}

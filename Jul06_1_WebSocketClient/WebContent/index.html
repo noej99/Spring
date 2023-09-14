@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript" src="http://195.168.9.62:1234/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// 연결하기 -자동으로->
+		// 서버쪽으로 메세지를 보냄
+		//		제목 : connection
+		// 		내용 : 본인과 연결되는 소켓객체
+		var socket = io.connect("http://195.168.9.62:1234");
+		
+		$("button").click(function(){
+			socket.emit("chat", "world");
+		});
+		
+		socket.on("abcd", function(msg) {
+			alert(msg);
+		});
+	});	
+</script>
+</head>
+<body>
+	<button>send</button>
+</body>
+</html>

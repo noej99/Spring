@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	img {
+		width: 60%;
+	}
+	table {
+		width: 100%;
+		border-spacing: 10px;
+	}
+	.myMsg {
+		font-size: 12pt;
+		padding: 10px;
+		border-radius: 10px;
+		background-color: #42A5F5;
+		font-weight: 800;
+		color: white;
+	}
+	.yourMsg {
+		font-size: 12pt;
+		padding: 10px;
+		border-radius: 10px;
+		background-color: #FF7043;
+		font-weight: 800;
+		color: white;
+	}
+	
+</style>
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script type="text/javascript" src="http://195.168.9.63:1234/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var socket = io.connect("http://195.168.9.63:1234");
+		var n;
+		$("#msg").keyup(function(e){
+			if (e.keyCode == 13) {
+				n = $("#nickname").val();
+				var m = $(this).val();
+				var msg = {nn : n, txt : m};
+				
+				socket.emit("clientMsg", msg);
+				
+				$(this).val("");
+			}
+		});
+		
+		socket.on("serverMsg", function(msg) {
+			var td1 = $("<td></td>").attr("style", "width: 40%;");
+			var td2 = $("<td></td>").attr("style","width: 20%;");
+			
+			if (n == msg.nn) {
+				var txtTd = $("<td></td>").attr("class", "myMsg").attr("align", "right").append("[ " + msg.nn + " ]" + "<br> <br>" + msg.txt);
+				var tr = $("<tr></tr>").append(td1, td2, txtTd);
+			} else {
+				var txtTd = $("<td></td>").attr("class", "yourMsg").append("[ " + msg.nn + " ]" + "<br> <br>" + msg.txt);
+				var tr = $("<tr></tr>").append(txtTd, td2, td1);
+			}
+			$("table").append(tr);
+			var htmlHeight = $(document).height();
+			$(window).scrollTop(htmlHeight);
+		});
+	});	
+</script>
+</head>
+<body>
+	<div data-role="page" id="loginPage">
+		<div data-role="header" data-position="fixed">
+			<h1>채팅</h1>
+		</div>
+		<div data-role="content" align="center">
+			<img src="got.gif">
+			<input id="nickname" placeholder="대화명" autocomplete="off">
+			<a href="#chatPage" data-transition="flow" data-role="button">로그인</a>
+		</div>
+	</div>
+	<!-- ----------------------- -->
+	<div data-role="page" id="chatPage">
+		<div data-role="header" data-position="fixed">
+			<a href="#loginPage" data-transition="flow" data-icon="arrow-l">나가기</a>
+			<h1>채팅</h1>
+		</div>
+		<div data-role="content" align="center">
+			<table>
+			</table>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<input id="msg" placeholder="..." autocomplete="off">
+		</div>
+	</div>
+</body>
+</html>

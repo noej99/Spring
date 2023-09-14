@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="snsMapper">
+	<delete id="delete" parameterType="com.noej.wp.sns.SNSMsg">
+		delete from wp_sns where ws_no = #{ws_no}
+	</delete>
+	<delete id="deleteReply" parameterType="com.noej.wp.sns.SNSReply">
+		delete from wp_sns_reply where wsr_no = #{wsr_no}
+	</delete>
+	<insert id="write" parameterType="com.noej.wp.sns.SNSMsg">
+		insert into wp_sns
+		values(wp_sns_seq.nextval, #{ws_writer}, #{ws_txt}, SYSDATE)
+	</insert>
+	<insert id="writeReply" parameterType="com.noej.wp.sns.SNSReply">
+		insert into wp_sns_reply 
+		values(wp_sns_reply_seq.nextval, #{wsr_ws_no}, #{wsr_writer}, #{wsr_txt}, sysdate)
+	</insert>
+	<select id="get" parameterType="com.noej.wp.sns.SNSSelector"
+		resultType="com.noej.wp.sns.SNSMsg">
+		select ws_no, ws_writer, ws_txt, ws_date, wm_photo
+		from (
+		select *
+		from (
+		select rownum as rn, ws_no, ws_writer, ws_txt, ws_date
+		from (
+		select *
+		from wp_sns
+		where ws_txt like '%'||#{search}||'%' or ws_writer like '%'||#{search}||'%'
+		order by ws_date desc
+		)
+		)
+		where rn &gt;= #{start} and rn &lt;= #{end}
+		),(
+		select wm_id, wm_photo
+		from wp_member
+		where wm_id in (
+		select ws_writer
+		from (
+		select rownum as rn, ws_no, ws_writer, ws_txt, ws_date
+		from (
+		select *
+		from wp_sns
+		where ws_txt like '%'||#{search}||'%' or ws_writer like '%'||#{search}||'%'
+		order by ws_date desc
+		)
+		)
+		where rn &gt;= #{start} and rn &lt;= #{end}
+		)
+		)
+		where wm_id = ws_writer
+		order by ws_date desc
+	</select>
+	<select id="getAllMsgCount" resultType="java.lang.Integer">
+		select count(*) from
+		wp_sns
+	</select>
+	<select id="getMsgCount" parameterType="com.noej.wp.sns.SNSMsg"
+		resultType="java.lang.Integer">
+		select count(*)
+		from wp_sns
+		where ws_txt like
+		'%'||#{search}||'%'
+	</select>
+	<select id="getReply"  parameterType="com.noej.wp.sns.SNSMsg"
+	resultType="com.noej.wp.sns.SNSReply">
+		select wsr_writer, wsr_txt, wsr_date 
+		from wp_sns_reply 
+		where wsr_ws_no = #{ws_no} order by wsr_date
+	</select>
+	<update id="update" parameterType="com.noej.wp.sns.SNSMsg">
+		update wp_sns
+		set ws_txt = #{ws_txt}
+		where ws_no = #{ws_no}
+	</update>
+	<update id="updateReply" parameterType="com.noej.wp.sns.SNSReply">
+		update wp_sns_reply set wsr_txt = #{wsr_txt} where wsr_no = #{wsr_no}
+	</update>
+</mapper>

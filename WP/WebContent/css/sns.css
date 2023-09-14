@@ -1,0 +1,134 @@
+@charset "EUC-KR";
+::-webkit-scrollbar{
+	display: none;
+}
+#snsWriteTable {
+	position: fixed;
+	width: 100%;
+	bottom: 30px;
+	right: 0px;
+}
+
+#snsWriteTable table {
+	border: black solid 2px;
+	background-color: white;
+}
+
+#snsWriteTable textarea {
+	resize: none;
+	width: 600px;
+	height: 80px;
+	border: none;
+	background-color: transparent;
+	outline: none;
+	font-size: 15pt;
+	color: black;
+	padding: 20px;
+}
+#snsWriteTable button {
+	background-color: transparent;
+	border: none;
+	font-size: 20pt;
+	color: black;
+	font-weight: 600;
+}
+
+.aMsg {
+	width: 80%;
+	background-color: white;
+	color: black;
+	margin: 20px;
+	border: black solid 2px;
+}
+
+.aMsg td {
+	padding: 10px;
+}
+
+.aMsg td1 {
+	width: 90px;
+}
+
+.aMsg img {
+	max-width: 80px;
+}
+.Msg td2 {
+	font-size: 13pt;
+}
+
+.aMsg td3 {
+	font-size: 8pt;
+}
+
+.aMsg td4 {
+	padding: 20px;
+}
+
+.aMsg button {
+	border: none;
+	background-color: transparent;
+	color: black;
+	font-size: 10pt;
+	cursor: pointer;
+}
+
+.aMsg td5 {
+	padding: 20px;
+	font-size: 10pt;
+}
+
+.aMsg input {
+	border: none;
+	background-color: transparent;
+	border-bottom:  black solid 1px;
+	width: 300px;
+	outline: none;
+	color: black;
+}
+
+#snsReplyWriter {
+	color: black;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#snsSearchArea {
+	width: 600px;
+	height: 40px;
+	border: black solid 2px;
+}
+
+#snsSearchArea input {
+	width: 400px;
+	height: 30px;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	color: black;
+	padding: 5px;
+	font-size: 13pt;
+}
+
+#snsSearchArea button {
+	color: black;
+	background-color: transparent;
+	border: none;
+	font-size: 14pt;
+	font-weight: 800;
+}
+
+.snsL, .snsR {
+	font-size: 100pt;
+	font-weight: 500;
+	position: fixed;
+	top: 40%;
+	color: black;
+}
+
+.snsL {
+	left: 40px;
+}
+
+.snsR {
+	right: 40px;
+}

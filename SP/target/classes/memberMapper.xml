@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.noej.sp.member.MemberMapper">
+	<delete id="delete" parameterType="com.noej.sp.member.Member">
+		delete from sp_member where sm_id=#{sm_id}
+	</delete>
+	<select id="getMemberByID" parameterType="com.noej.sp.member.Member"
+		resultType="com.noej.sp.member.Member">
+		select * from sp_member where sm_id=#{sm_id}
+	</select>
+	<select id="getMemberIDByID" parameterType="com.noej.sp.member.Member" resultType="com.noej.sp.member.Member">
+		select sm_id, sm_name, sm_birthday, sm_addr, sm_img
+		from sp_member 
+		where sm_id = #{sm_id}
+	</select>
+	<insert id="reg" parameterType="com.noej.sp.member.Member">
+		insert into sp_member
+		values(#{sm_id}, #{sm_pw}, #{sm_name}, #{sm_birthday}, #{sm_addr},
+		#{sm_img})
+	</insert>
+	<update id="update" parameterType="com.noej.sp.member.Member">
+		update sp_member set sm_pw = #{sm_pw}, sm_name = #{sm_name}, sm_addr = #{sm_addr}, sm_img = #{sm_img} where sm_id = #{sm_id}
+	</update>
+</mapper>

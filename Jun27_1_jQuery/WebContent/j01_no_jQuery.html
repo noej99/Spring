@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	// 함수 만들어놓고 -> DOM객체의 onXXX에 연결하는 작업형태
+	// -> 왔다갔다
+	// -> html소스 길어지면 DOM객체 찾기가...
+	// -> 같은 이벤트 여러 객체에 걸어줄때...
+
+	var idInput = null;
+	function main() {
+		idInput = document.getElementById("id");
+	}
+
+	// interpreter방식 언어가 문법은 길면 에러가 많이 나
+	// interpreter방식 언어라서 main이 없으니 필요하면 만들어 쓰는
+	function showAlert() {
+		alert(idInput.value);
+	}
+</script>
+</head>
+<body onload="main();">
+	<!-- body의 onload : body에 있는거 화면에 다 나오고 나서 -->
+	<input id="id">
+	<button onclick="showAlert();">버튼</button>
+</body>
+</html>

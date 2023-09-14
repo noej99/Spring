@@ -1,0 +1,187 @@
+@charset "UTF-8";
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+#snsControlTable {
+	position: fixed;
+	width: 500px;
+	left: 707px;
+	bottom: -204px;
+	transition: all 0.3s ease-out;
+}
+
+#snsWriteTable {
+	background-color: white;
+	width: 500px;
+	border: black solid 2px;
+	font-size: 13pt;
+	color: black;
+}
+
+#snsWriteTable .textType{
+	border: none;
+	background-color: transparent;
+	width: 400px;
+	height: 40px;
+	font-size: 13pt;
+	color: black;
+	outline: none;
+	font-family: "chosun";
+}
+
+#snsWriteTable textarea {
+	color: black;
+	padding: 5px;
+	border: none;
+	background-color: transparent;
+	width: 400px;
+	height: 130px;
+	font-size: 13pt;
+	outline: none;
+	font-family: "chosun";
+	resize: none;
+}
+
+.aSNSMsg {
+	width: 80%;
+	font-family: "chosun";
+	margin: 20px;
+}
+
+.aSNSMsg .imgTd{
+	width: 130px;
+}
+
+.aSNSMsg img {
+	max-width: 120px;
+}
+
+.aSNSMsg .writerTd{
+	font-size: 15pt;
+	height: 30px;
+	padding-left: 10px;
+}
+
+.aSNSMsg .dateTd {
+	font-size: 11pt;
+	height: 25px;
+	padding-right: 10px;
+}
+
+.aSNSMsg .txtTd {
+		padding: 10px;
+		font-size: 11pt;
+}
+
+.aSNSMsg button {
+	border: none;
+	color: black;
+	font-family: "chosun";
+	font-size: 11pt;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+#snsL {
+	position: fixed;
+	top: 50%;
+	left: 200px;
+	width: 100px;
+	height: 200px;
+	cursor: pointer;
+	color: black;
+	font-size: 30pt;
+}
+
+#snsR {
+	position: fixed;
+	top: 50%;
+	right: 200px;
+	width: 100px;
+	height: 200px;;
+	cursor: pointer;
+	color: black;
+	font-size: 30pt;
+}
+
+#snsSearchTable {
+	width: 500px;
+	height:50px; 
+	border: black solid 2px;
+	background-color: white;
+}
+
+#snsSearchTable .textType {
+	color: black;
+	width: 400px;
+	height: 30px;
+	font-family: "chosun";
+	font-size: 13pt;
+	padding: 3px;
+	padding-left: 10px;
+	outline: none;
+	border: none;
+}
+
+#snsControlHandle {
+	width: 40px;
+}
+
+.aSNSMsg .txtTd {
+	padding: 20px;
+	font-size: 11pt;
+	font-family: "chosun";
+}
+
+.aSNSMsg .replyTd .writer {
+	margin: 10px;
+	font-family: "chosun";
+}
+
+.aSNSMsg .replyTd .date {
+	font-size: 9pt;
+	font-family: "chosun";
+}
+
+.aSNSMsg .replyTd input {
+	border: none;
+	font-size: 11pt;
+	background: transparent;
+	width: 500px;
+	height: 25px;
+	font-family: "chosun";
+	outline: none;
+	padding-left: 10px;
+}
+
+.aSNSMsg .replyTd button {
+	border: none;
+	background-color: transparent;
+	font-family: "chosun";
+}
+
+#blackArea {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: -100%;
+	top: -100%;
+	opacity: 0;
+	background-color: #000000AA;
+	z-index: 99;
+	transition: opacity 0.3s ease-out;
+}
+
+#blackArea2 {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: -100%;
+	top: -100%;
+	opacity: 0;
+	background-color: #000000AA;
+	z-index: 99;
+	transition: opacity 0.3s ease-out;
+}

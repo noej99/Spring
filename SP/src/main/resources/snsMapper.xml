@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.noej.sp.sns.SNSMapper">
+	<delete id="delete" parameterType="com.noej.sp.sns.SNSMsg">
+		delete from sp_sns where ss_no
+		= #{ss_no}
+	</delete>
+	<delete id="deleteReply" parameterType="com.noej.sp.sns.SNSReply">
+		delete from sp_sns_reply where ssr_no = #{ssr_no}
+	</delete>
+	<insert id="write" parameterType="com.noej.sp.sns.SNSMsg">
+		insert into sp_sns
+		values(sp_sns_seq.nextval, #{ss_writer}, #{ss_txt}, sysdate,
+		#{ss_color})
+	</insert>
+	<insert id="writeReply" parameterType="com.noej.sp.sns.SNSReply">
+		insert into sp_sns_reply values(sp_sns_reply_seq.nextval, #{ssr_ss_no}, #{ssr_writer}, #{ssr_txt}, sysdate)
+	
+	</insert>
+	<select id="get" parameterType="com.noej.sp.sns.SNSSelector"
+		resultType="com.noej.sp.sns.SNSMsg">
+		select ss_no, ss_writer, ss_txt, ss_color, ss_date, sm_img
+		from (
+		select *
+		from (
+		select rownum as rn, ss_no, ss_writer, ss_txt, ss_color, ss_date
+		from (
+		select *
+		from sp_sns
+		where ss_writer like '%'||#{search}||'%' or
+		ss_txt like '%'||#{search}||'%'
+		order by ss_date desc
+		)
+		)
+		where rn &gt;=
+		#{start} and rn &lt;= #{end}
+		), (
+		select sm_id, sm_img
+		from sp_member
+		where sm_id in (
+		select ss_writer
+		from (
+		select rownum as rn, ss_writer,
+		ss_date
+		from (
+		select *
+		from sp_sns
+		where ss_writer like
+		'%'||#{search}||'%' or ss_txt like '%'||#{search}||'%'
+		order by ss_date
+		desc
+		)
+		)
+		where rn &gt;= #{start} and rn &lt;= #{end}
+		)
+		)
+		where ss_writer =
+		sm_id
+		order by ss_date desc
+	</select>
+	<select id="getMsgCount"
+		parameterType="com.noej.sp.sns.SNSSelector"
+		resultType="java.lang.Integer">
+		select count(*) from sp_sns where ss_writer like
+		'%'||#{search}||'%' or ss_txt like '%'||#{search}||'%'
+	</select>
+	<select id="getMsgCountByWriter"
+		parameterType="com.noej.sp.member.Member"
+		resultType="java.lang.Integer">
+		select count(*) from sp_sns where ss_writer = #{sm_id}
+	</select>
+	<select id="getReply" parameterType="com.noej.sp.sns.SNSMsg" resultType="com.noej.sp.sns.SNSReply">
+		select * from sp_sns_reply where ssr_ss_no = #{ss_no} order by ssr_date
+	</select>
+	<update id="update" parameterType="com.noej.sp.sns.SNSMsg">
+		update sp_sns set ss_txt = #{ss_txt} where ss_no = #{ss_no}
+	</update>
+	<update id="updateReply" parameterType="com.noej.sp.sns.SNSReply">
+		update sp_sns_reply set ssr_txt = #{ssr_txt} where ssr_no = #{ssr_no}
+	</update>
+</mapper>

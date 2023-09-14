@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.noej.sp.gallery.GalleryMapper">
+	<delete id="delete" parameterType="com.noej.sp.gallery.Gallery">
+		delete from sp_gallery where sg_no = #{sg_no}
+	</delete>
+	<insert id="write" parameterType="com.noej.sp.gallery.Gallery">
+		insert into sp_gallery values(sp_gallery_seq.nextval, #{sg_writer}, #{sg_txt}, #{sg_img}, sysdate)
+	</insert>
+	<select id="get" resultType="com.noej.sp.gallery.Gallery">
+		select * from sp_gallery order by sg_date desc
+	</select>
+	<select id="getImg" parameterType="com.noej.sp.gallery.Gallery" resultType="java.lang.String">
+		select sg_img from sp_gallery where sg_no = #{sg_no}
+	</select>
+</mapper>

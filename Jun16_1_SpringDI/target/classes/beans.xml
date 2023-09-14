@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="c1" class="com.noej.jun161sdi.company.Company">
+		<constructor-arg value="오리온"></constructor-arg>
+		<constructor-arg value="수원"></constructor-arg>
+		<constructor-arg value="100"></constructor-arg>
+	</bean>
+	<bean name="s1" class="com.noej.jun161sdi.snack.Snack">
+		<property name="name" value="초코파이"></property>
+		<property name="price" value="5500"></property>
+		<property name="maker" ref="c1"></property>
+		<property name="ingredient">
+			<list value-type="java.lang.String">
+				<value>카카오</value>
+				<value>버터</value>
+				<value>마시멜로</value>
+				<value>밀</value>
+			</list>
+		</property>
+		<property name="feature">
+			<list value-type="java.lang.String">
+				<value>원조의 문파이보다도 부드러운 비스킷 반죽</value>
+				<value>초콜릿을 입힌 후에도 숙성 시간(약 2~3일간) 보관</value>
+				<value>마시멜로의 습기가 비스킷으로 고르게 옮아가게 만듦</value>
+				<value>비스킷의 질감이 빵과 유사한 질감</value>
+			</list>
+		</property>
+		<property name="nutrient">
+			<map key-type="java.lang.String" value-type="java.lang.Double">
+				<entry key="나트륨" value="0.9"></entry>
+				<entry key="탄수화물" value="25"></entry>
+				<entry key="당류" value="14"></entry>
+				<entry key="지방" value="7"></entry>
+			</map>
+		</property>
+		
+	</bean>
+</beans>
+<!-- 
+기본형급은 value 
+객체급은 reference  
+컬렉션급(list계열)은 list - value-type  -> value  /set도 사용은 가능한데...
+컬렉션급(map계열)은 map - key-type, value-type - entry - key,value
+-->

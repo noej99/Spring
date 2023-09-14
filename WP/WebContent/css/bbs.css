@@ -1,0 +1,124 @@
+@charset "EUC-KR";
+
+#bbsArea {
+	width: 90%;
+	height: 100px;
+	border: black solid 1px;
+}
+
+#bbsArea a{
+	color: black;
+}
+
+#bbs {
+	width: 95%;
+	font-size: 13pt;
+	color: black;
+}
+
+#bbs .th1 {
+	width: 100px;
+	height: 40px;
+}
+
+#bbs .th2 {
+	width: 650px;
+}
+
+#bbs .dataTr {
+	cursor: pointer;
+	color: black;
+	height: 30px;
+}
+
+#bbs .dataTr:hover {
+	background-color: #636469;
+}
+
+#bbsWriteArea {
+	width: 60%;
+	height: 400px;
+	color: black;
+}
+
+#bbsWriteArea td {
+	padding: 10px;
+}
+
+#bbsWriteArea input {
+	width: 90%;
+	height: 40px;
+	border: black solid 2px;
+	padding: 5px;
+	font-size: 12pt;
+	outline: none;
+}
+
+#bbsWriteArea textarea {
+	width: 90%;
+	height: 250px;
+	resize: none;
+	border: black solid 2px;
+	outline: none;
+	padding: 5px;
+	font-size: 12pt;
+}
+
+#bbsWriteArea button {
+	border: none;
+	background-color: transparent;
+	font-size: 20pt;
+}
+
+#bbsDetailTitle {
+	width: 80%;
+	background-color: white;
+	border-top: black solid 2px;
+	margin-top: 50px;
+}
+
+#bbsDetailTitle .title {
+	padding: 10px;
+	font-size: 40pt;
+	font-weight: 700;
+}
+
+#bbsDetailWriter {
+	width: 80%;
+	border-bottom: black solid 2px;
+}
+
+#bbsDetailWriter .writer {
+	font-size: 13pt;
+	padding-left: 10px;
+}
+
+#bbsDetailWriter .date {
+	font-size: 10pt;
+	color: gray;
+	padding-left: 10px;
+}
+
+#bbsDetailWriter button {
+	outline: none;
+	border: none;
+	background-color: transparent;
+	color: black;
+	cursor: pointer;
+}
+
+#bbsDetailTxt {
+	width: 80%;
+	font-size: 15pt;
+	padding-bottom: 100px;
+	border-bottom: black solid 2px;
+}
+
+#bbsDetailTxt .txt{
+	padding: 10px;
+}
+
+#bbsDetailReply {
+	width: 80%;
+	padding-left: 10px;
+}

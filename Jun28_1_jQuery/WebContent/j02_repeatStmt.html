@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(function() {
+		// jQuery반복문
+		//		DOM객체 대상
+		//	$(선택자).each(콜백함수);
+		$("h1").each(function(i,h11){
+			// alert(i);
+			// alert(h11);
+			$(h11).css("font-size", (i+1) * 10 + "pt");
+		});
+	});
+</script>
+</head>
+<body>
+	<h1>ㅋ</h1>
+	<h1>ㅎ</h1>
+	<h1>ㅇ</h1>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.noej.sp.dr.DRMapper">
+	<delete id="delete" parameterType="com.noej.sp.dr.DataroomFile">
+		delete from sp_dr where sd_no = #{sd_no}
+	</delete>
+	<insert id="upload" parameterType="com.noej.sp.dr.DataroomFile">
+		insert into sp_dr values(sp_dr_seq.nextval, #{sd_uploader}, #{sd_title}, #{sd_file}, #{sd_category}, sysdate)
+	</insert>
+	<select id="get1" resultType="com.noej.sp.dr.DataroomFile">
+		select * from sp_dr where sd_category = 'E57373' order by sd_date desc
+	</select>
+	<select id="get2" resultType="com.noej.sp.dr.DataroomFile">
+		select * from sp_dr where sd_category = '81C784' order by sd_date desc
+	</select>
+	<select id="get3" resultType="com.noej.sp.dr.DataroomFile">
+		select * from sp_dr where sd_category = '64B5F6' order by sd_date desc
+	</select>
+	<select id="get4" resultType="com.noej.sp.dr.DataroomFile">
+		select * from sp_dr where sd_category = 'E0E0E0' order by sd_date desc
+	</select>
+	<select id="getFile" parameterType="com.noej.sp.dr.DataroomFile" resultType="java.lang.String">
+		select sd_file from sp_dr where sd_no = #{sd_no}
+	</select>
+</mapper>

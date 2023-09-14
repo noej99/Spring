@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table {
+	width: 400px;
+	height: 200px;
+}
+</style>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("button").click(function(){
+			var name = $("#nInput").val();
+			var price = $("#pInput").val();
+			var nameTd= $("<td></td>").text(name);
+			var priceTd = $("<td></td>").text(price);
+			var tr = $("<tr></tr>").append(nameTd, priceTd);
+			$("#table").append(tr);
+			
+			$("#nInput").val("");
+			$("#pInput").val("");
+		});
+	});
+</script>
+</head>
+<body>
+	<table border="1">
+		<tr>
+		<td align="center">
+	이름 : <input id="nInput"><p>
+	가격 : <input id="pInput"><p>
+	<button>등록</button>
+		</td>
+		</tr>
+	</table>
+	<table id="table" border="1">
+		<tr>
+			<th>이름</th>
+			<th>가격</th>
+		</tr>
+	</table>
+</body>
+</html>

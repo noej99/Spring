@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.noej.jun261xj.snack.SnackMapper">
+	<select id="get"
+		parameterType="com.noej.jun261xj.snack.SnackSelector"
+		resultType="com.noej.jun261xj.snack.Snack">
+		select *
+		from (
+		select rownum as rn, s_name, s_price
+		from (
+		select *
+		from JUN27_SNACK
+		order by s_name
+		)
+		)
+		where rn &gt;=#{start} and rn &lt;=#{end}
+	</select>
+	<select id="count" resultType="java.lang.Integer">
+		select count(*) from jun27_snack
+	</select>
+</mapper>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+canvas {
+	border: black solid 3px;
+}
+</style>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript"
+	src="http://195.168.9.62:5555/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var socket = io.connect("http://195.168.9.62:5555");
+		
+		var paper = document.getElementById("cv");
+		var pen = paper.getContext("2d");
+		var ball = new Image();
+		var x = 240;
+		var y = 290;
+		var xSpd = -8;
+		var ySpd = -8;
+		var barX = 150;
+		var hostBarX = 150;
+		socket.on("sHostBarX", function(x){
+			hostBarX = x;
+		});
+		socket.on("sStart", function() {
+			var t = setInterval(function() {
+				pen.save();
+				pen.fillStyle = "rgba(0, 0, 0, 0.3)";
+				pen.fillRect(0, 0, 500, 600);
+				x += xSpd;
+				y += ySpd;
+				if (x >= 470 || x <= 0) {
+					xSpd *= -1;
+				}
+				if (y <= 0) {
+					clearInterval(t);
+					alert("승");
+				}
+
+				if (y >= 540 && barX - 15 <= x && barX + 85 >= x && y <= 574 ) {
+					ySpd = 8;
+				}
+				if (y >= 580) {
+					clearInterval(t);
+					alert("패");
+				}
+				pen.shadowBlur = 15;
+				pen.shadowColor = "#aa3333";
+				pen.drawImage(ball, x, y);
+				
+				pen.shadowColor = "white";
+				pen.fillStyle = "blue";
+				pen.fillRect(hostBarX, 10, 100, 20);
+				
+				pen.fillStyle = "red";
+				pen.fillRect(barX, 570, 100, 20);
+
+				pen.restore();
+			}, 20);
+		});
+		ball.src = "ball.png";
+		ball.onload = function() {
+			pen.fillStyle = "black";
+			pen.fillRect(0, 0, 500, 600);
+			
+			pen.shadowColor = "#aa3333";
+			pen.drawImage(ball, x, y);
+			
+			pen.fillStyle = "blue";
+			pen.fillRect(hostBarX, 10, 100, 20);
+			
+			pen.fillStyle = "red";
+			pen.fillRect(barX, 570, 100, 20);
+		};
+
+		$("canvas").mousemove(function(e) {
+			barX = e.pageX - 58;
+			socket.emit("guestBarX", (400 - barX));
+		});
+		
+		$("canvas").click(function() {
+			socket.emit("start", "start");
+		});
+	});
+</script>
+</head>
+<body>
+	<canvas id="cv" width="500px" height="600px"></canvas>
+</body>
+</html>

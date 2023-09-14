@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	canvas {
+		border: black solid 3px;
+	}
+</style>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		// jQuery로 canvas소환 불가능
+		var paper = document.getElementById("cv");
+		var pen = paper.getContext("2d"); // paper에 2d그림 그릴 펜
+		
+		pen.fillRect(10,20,30,40); // x, y, w, h
+		
+		pen.fillStyle = "red"; // 면 색
+		pen.fillRect(40,60,100,100);
+		
+		// 선
+		pen.strokeStyle = "green"; // 선 색
+		pen.lineWidth = 3; // 선 두께
+		pen.beginPath(); // 지금부터 새로운 선 정보
+		pen.moveTo(100, 100); // 정보 넣어주기
+		pen.lineTo(200, 200); // 정보 넣어주기
+		pen.closePath(); // 선 정보 끝
+		pen.stroke(); // 실제 그리기
+		
+		// 이미지 파일 그리기
+		var a = new Image();
+		a.src = "sands.png";
+		a.onload = function(){
+			pen.drawImage(a, 200, 200, 100, 100);
+		};
+		
+		pen.save(); // 현재 펜 상태 저장(그림자, 색깔, ...)
+		
+		// 그림자
+		pen.shadowOffsetX = 10;
+		pen.shadowOffsetY = 15;
+		pen.shadowBlur = 20;
+		pen.shadowColor = "gray";
+		
+		pen.fillRect(300, 50, 100, 100);
+		
+		pen.restore();
+		
+		pen.fillStyle = "yellow";
+		pen.fillRect(300, 150, 100, 100);
+	});
+</script>
+</head>
+<body>
+	<!-- 
+		html5에 추가된 그래픽 표시할 수 있는 영역
+			css로 사이즈 조절 -> 내용물이 같이 늘어남 
+			-> DOM객체 속성으로 조절하는 걸로
+	-->
+	<canvas id="cv" width="500px" height="500px"></canvas>
+</body>
+</html>

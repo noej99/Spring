@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+canvas {
+	border: black solid 3px;
+}
+</style>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript"
+	src="http://195.168.9.62:2222/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var socket = io.connect("http://195.168.9.62:2222");
+		var paper = document.getElementById("cv");
+		var pen = paper.getContext("2d");
+		var startX = 0;
+		var startY = 0;
+		var endX = 0;
+		var endY = 0;
+		
+		socket.on("sDrawData", function(data){
+			pen.strokeStyle = data.c;
+			pen.lineWidth = data.w;
+			pen.beginPath();
+			pen.moveTo(data.sx, data.sy);
+			pen.lineTo(data.ex, data.ey);
+			pen.closePath();
+			pen.stroke();
+		});
+		
+		$("canvas").mousedown(function(e) {
+			draw = true;
+			startX = e.pageX - 11;
+			startY = e.pageY - 11;
+		});
+		$("canvas").mousemove(function(e) {
+			if (draw) {
+				endX = e.pageX - 11;
+				endY = e.pageY - 11;
+				
+				var data = {
+					c : $("#i1").val(), w : $("#i2").val(), 
+					sx : startX, sy : startY, ex : endX, ey : endY
+				};
+				socket.emit("drawData", data);
+				
+				startX = endX;
+				startY = endY;
+			}
+		});
+		$("canvas").mouseup(function(e) {
+			draw = false;
+		});
+		$("#i1").keyup(function(){
+			var c = $(this).val();
+			$(this).css("border", c + " solid 2px");
+		});
+	});
+</script>
+</head>
+<body>
+	<canvas id="cv" width="800px" height="800px"></canvas>
+	<hr>
+	색깔
+	<input id="i1" value="#ff0000">
+	<br> 굵기
+	<input id="i2" value="5">
+</body>
+</html>

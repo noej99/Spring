@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jQuery.js"></script>
+<script type="text/javascript">
+	// <태그명 속성명="값" 속성명="값"...>
+	//		텍스트
+	// </태그명>
+	$(function() {
+		$("#b1").click(function() {
+			// 텍스트 추가/수정
+			// $(선택자).text(내용);
+			// $(t선택자).html(내용);
+			$("a").text("<b>구글로</b>");
+			// $("a").html("<b>구글로</b>");
+			$("a").attr("href", "http://www.google.com");
+		});
+		$("#b2").click(function() {
+			// 텍스트 삭제
+			$("a").text("");
+			// $("a").html("");
+		});
+		$("#b3").click(function() {
+			var aTxt = $("a").text();
+			alert(aTxt);
+		});
+
+		setTimeout(function() {
+			$("h1").text("ㅋ");
+			setTimeout(function() {
+				$("h1").text("ㅋㅋ");
+				setTimeout(function() {
+					$("h1").text("ㅋㅋㅋ");
+					setTimeout(function() {
+						$("h1").text("ㅋㅋㅋㅋ");
+						setTimeout(function() {
+							$("h1").text("ㅋㅋㅋㅋㅋ");
+							setTimeout(function() {
+								$("h1").text("ㅋㅋㅋㅋㅋㅋ");
+								setTimeout(function() {
+									$("h1").text("ㅋㅋㅋㅋㅋㅋㅋ");
+									setTimeout(function() {
+										$("h1").text("ㅋㅋㅋㅋㅋㅋㅋㅋ");
+									}, 500);	
+								}, 500);
+							}, 500);
+						}, 500);
+					}, 500);
+				}, 500);
+			}, 500);
+		}, 800);
+
+	});
+</script>
+</head>
+<body>
+	<h1></h1>
+	<a href="https://www.naver.com">네이버</a>
+	<hr>
+	<button id="b1">버튼1</button>
+	<button id="b2">버튼2</button>
+	<button id="b3">버튼3</button>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+	<delete id="bye" parameterType="com.noej.wp.member.Member">
+		delete from wp_member
+		where
+		wm_id=#{wm_id}
+	</delete>
+	<insert id="reg" parameterType="com.noej.wp.member.Member">
+		insert into wp_member
+		values(#{wm_id}, #{wm_pw}, #{wm_name}, #{wm_birth}, #{wm_addr},
+		#{wm_photo})
+	</insert>
+	<select id="login" resultType="com.noej.wp.member.Member">
+		select * from wp_member
+		where
+		wm_id=#{wm_id}
+	</select>
+	<update id="update" parameterType="com.noej.wp.member.Member">
+		update wp_member
+		set wm_pw=#{wm_pw}, wm_name=#{wm_name}, wm_addr=#{wm_addr},
+		wm_photo=#{wm_photo}
+		where wm_id=#{wm_id}
+	</update>
+</mapper>
